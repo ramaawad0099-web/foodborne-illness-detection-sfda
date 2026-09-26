@@ -45,3 +45,12 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 - **Dataset Scope:** Analyzed 4,122 expert-verified raw tweets directly post-ingestion.
 - **Key Observation:** Exhibits a natural tweet character distribution with a mean length of 154 characters and a peak near standard Twitter limits.
 - **Engineering Purpose:** Understanding this raw baseline directly guided our text-cleaning pipeline and informed the selection of the optimal `max_length` parameter for fine-tuning **BERTweet**, preventing context loss while preserving GPU efficiency.
+
+
+
+### Class Label Distribution & Balance Verification
+![Class Label Distribution](2.png)
+
+- **Class Breakdown:** 2,076 **Alert** tweets (Label 1) vs. 2,046 **Noise** tweets (Label 0).
+- **Dataset Balance:** Highly balanced distribution (~50/50 split across binary categories).
+- **Engineering Purpose:** Confirms dataset equilibrium, ensuring the classification model trains without class bias or requiring artificial resampling/reweighting techniques.
