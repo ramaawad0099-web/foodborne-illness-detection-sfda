@@ -37,7 +37,7 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 
 
 
-# 3.2.1 Data Collection & Ingestion Framework
+# Data Collection & Ingestion Framework
 
 The system utilizes a multi-source data ingestion strategy to balance real-time hazard detection with high-precision regulatory monitoring. Data sources are categorized into three operational pillars:
 
