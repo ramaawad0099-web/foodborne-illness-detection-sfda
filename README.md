@@ -433,7 +433,16 @@ Task 3 evaluated four candidate architectures for multi-class product classifica
 | **Qwen2.5** | 0.8049 | 0.7609 | 0.7088 | 0.7242 |
 | **BERT-CNN-BiLSTM** | 0.8018 | 0.7348 | 0.7035 | 0.7095 |
 
+
+
+
+
 ![Macro Metrics Comparison Across Task 3 Candidate Models](23.png)
+
+
+
+
+
 
 - **Comparative Key Findings:** 
   - **ModernBERT-Large** achieved the top overall performance with a **Macro F1 of 0.7401** and **Macro Accuracy of 0.8170**.
@@ -444,7 +453,13 @@ Task 3 evaluated four candidate architectures for multi-class product classifica
 
 To interpret model decision boundaries and diagnose failure cases, Local Interpretable Model-agnostic Explanations (LIME) was applied to analyze prediction behavior.
 
+
+
+
 ![BERTweet Alert Detection - LIME XAI ](24.png)
+
+
+
 
 #### Error Case Analysis (False Negative Analysis)
 - **Sample Instance:** *"one in five office coffee mugs contains fecal bacterial and e.coli, which can cause diarrhea, food poisoning, and infections. corefact"*
@@ -457,6 +472,10 @@ To interpret model decision boundaries and diagnose failure cases, Local Interpr
 #### Token-Level NER Error Case Analysis (BioBERT)
 
 To analyze sub-word and token-level sequence labeling behavior, LIME was applied to inspect misclassified entities within Task 2.
+
+
+
+
 
 ![BioBERT NER - LIME](25.png)
 
