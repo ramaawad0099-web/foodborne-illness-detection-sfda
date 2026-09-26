@@ -237,3 +237,8 @@ Processed Input Characteristics: The processed input text is longer because it c
 
 Classification Impact: Combining these elements makes the FDA records more informative for classification.
 
+![FDA dataset quality metrics before and after preprocessing](18.png)
+* **Dataset Quality Overview :** Shows dataset quality metrics before and after preprocessing.
+* **Data Integrity Preservation:** Total rows and valid dates were completely preserved throughout the pipeline.
+* **Feature Pipeline Additions:** New essential fields were created for the final pipeline, including `source`, `title`, `text`, and `input_text`.
+
