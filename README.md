@@ -207,4 +207,11 @@ This phase evaluates the structural cleanliness, text normalization outcomes, an
   - **Distribution Shape:** Preserves a stable multi-modal distribution, demonstrating that web artifacts, URLs, and user mentions were removed without stripping core semantic context or diagnostic text content.
 - **Engineering Outcome:** Confirms optimal input length alignment for tokenization without creating empty sequences or artificial character truncations.
 
+![Tweet Length Before vs After Preprocessing](15.png)
+
+- **Comparative Density Analysis :** Overlays the character length distributions before and after text cleaning:
+  - **Noise-Reduction Impact:** Shows a slight downward shift in raw length due to the systematically removed noise elements (URLs, `@user` mentions, special characters).
+  - **Distribution Preservation:** The overall density profile perfectly retains its original multi-modal shape.
+- **Engineering Value:** Validates that preprocessing successfully isolated and eliminated irrelevant variance while keeping the underlying semantic signal fully intact and highly representative for downstream tokenization and model training.
+
 
