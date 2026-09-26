@@ -61,3 +61,18 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 - **Semantic Richness:** Evaluates joint entity occurrences (`food`, `loc`, `symptom`, `other`) within individual tweets for Named Entity Recognition (NER) pipeline design.
 - **Key Observation:** High co-occurrence values between `symptom` and `food` (342 co-occurrences) as well as `symptom` and `loc` (258 co-occurrences).
 - **Domain Relevance:** Validates that "Alert" signals represent granular, context-rich public health reports linking specific symptoms to distinct food items and locations, rather than generic slang.
+
+
+
+## ## Exploratory Data Analysis (EDA) — Raw Data Insights (SemEval-2025 Task 9 Data)
+
+### Data Quality & Missing Value Audit
+- **Data Integrity:** $0\%$ missing values detected across all attributes, ensuring consistent baseline records.
+- **Deduplication:** Only 18 duplicate entries identified out of the full corpus, confirming negligible repetition risk.
+
+### Document Text Length Distribution Analysis
+![SemEval Text Length Boxplot](4.png)
+
+- **Document Text Length:** Displays a broad distribution with a median length of **1,946 characters** ($\text{IQR} = 1560.5$).
+- **Outlier Analysis:** Identified **202 unusually long document texts** (visible as upper outliers in the boxplot above), with zero empty fields or short-text anomalies.
+- **Engineering Value:** Validated the structural integrity of long-form context input, directly guiding the truncation and chunking strategies required for long-sequence Transformer fine-tuning.
