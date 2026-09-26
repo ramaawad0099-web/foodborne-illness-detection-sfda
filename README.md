@@ -67,12 +67,17 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 ## ## Exploratory Data Analysis (EDA) — Raw Data Insights (SemEval-2025 Task 9 Data)
 
 ### Data Quality & Missing Value Audit
-- **Data Integrity:** $0\%$ missing values detected across all attributes, ensuring consistent baseline records.
-- **Deduplication:** Only 18 duplicate entries identified out of the full corpus, confirming negligible repetition risk.
+- **Data Integrity:** 0% missing values detected across all attributes, ensuring consistent baseline records.
+- **Deduplication:** Only 18 duplicate rows identified, confirming negligible repetition risk without distorting the overall distribution.
+- **Multilingual & Symbol Heterogeneity:** Identified 4,985 texts and 1,950 titles containing non-ASCII symbols and irregular character usage, reflecting the multilingual nature of the dataset.
 
-### Document Text Length Distribution Analysis
-![SemEval Text Length Boxplot](4.png)
+### Structural Text & Title Length Distribution
+![SemEval Text and Title Length Boxplots](4.png)
 
-- **Document Text Length:** Displays a broad distribution with a median length of **1,946 characters** ($\text{IQR} = 1560.5$).
-- **Outlier Analysis:** Identified **202 unusually long document texts** (visible as upper outliers in the boxplot above), with zero empty fields or short-text anomalies.
-- **Engineering Value:** Validated the structural integrity of long-form context input, directly guiding the truncation and chunking strategies required for long-sequence Transformer fine-tuning.
+- **Document Text Length Analysis :**
+  - **Median Length:** 1,946 characters (Broad spread with $\text{IQR} = 1560.5$).
+  - **Outlier Detection:** 202 unusually long document texts identified as upper outliers; no short-text anomalies or empty fields found.
+- **Title Length Analysis :**
+  - **Median Length:** 86 characters.
+  - **Outlier Detection:** 9 exceptionally short titles and 122 exceptionally long titles detected, with zero missing values.
+- **Engineering Value:** Validated structural stability and text boundaries for long-sequence inputs, guiding tokenization truncation thresholds and text-cleaning pipelines.
