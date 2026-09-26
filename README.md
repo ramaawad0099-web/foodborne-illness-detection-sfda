@@ -202,7 +202,7 @@ This phase evaluates the structural cleanliness, text normalization outcomes, an
 
 ![Character Length Distribution After Preprocessing](14.png)
 
-- **Post-Cleaning Structural Stability (Figure 4.2):** Analyzes character-length metrics across cleaned tweets:
+- **Post-Cleaning Structural Stability :** Analyzes character-length metrics across cleaned tweets:
   - **Mean Tweet Length:** Standardized to $\approx 154$ characters after noise reduction.
   - **Distribution Shape:** Preserves a stable multi-modal distribution, demonstrating that web artifacts, URLs, and user mentions were removed without stripping core semantic context or diagnostic text content.
 - **Engineering Outcome:** Confirms optimal input length alignment for tokenization without creating empty sequences or artificial character truncations.
