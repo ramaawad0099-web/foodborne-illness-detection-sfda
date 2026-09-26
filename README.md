@@ -171,3 +171,12 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Ongoing:** 377 records (Active recall actions undergoing regulatory processing).
   - **Completed:** 46 records (Recalls where all actions are finished but final administrative termination is pending).
 - **Engineering Value:** Categorizes the active context of enforcement data, enabling label filtering and status-based feature engineering during data modeling.
+
+
+### Text Length Variability Analysis (Pre-Preprocessing)
+![Before Preprocessing: Raw Text Length Distribution](12.png)
+
+- **Text Length Comparison :** Evaluates length distributions for core textual fields (`product_description` vs. `reason_for_recall`):
+  - **`product_description`:** Exhibits higher variability and longer lengths, with extreme right-skewed outliers (up to ~4,000 characters) due to detailed batch codes and embedded product specifications.
+  - **`reason_for_recall`:** Displays a significantly narrower text-length range, remaining concise and concentrated near lower character bounds.
+- **Engineering Value:** Evaluates sequence length variability before text concatenation, establishing context-length baselines to prevent truncation of critical entity identifiers in the classification transformer model.
