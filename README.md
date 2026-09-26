@@ -552,3 +552,28 @@ The instance involves an Alexia Foods recall notice for olive oil, sun-dried tom
   * **Positive Contribution to Wrong Label:**  reveals one of the most extreme single-token dependencies observed across all models, where `pesto` alone accounts for an importance score of approximately +0.90, dwarfing all other contributing tokens. Supporting tokens include `dried`, `tomatoes`, `and`, `refund`, `these`, `drug`, and `an`, though their contributions are marginal by comparison.
   * **Negative Importance on Contextual Signals:** Contextual and product-related tokens such as `potato`, `retail`, `purchased`, `wedges`, `pine`, `potatoes`, and `today` all contribute negatively.
 * **Root Cause Insight:** The near-total reliance on a single condiment-associated token (`pesto`) to determine the entire classification reveals a severe lexical anchoring problem in the hybrid architecture. The model fails to integrate the broader product context—a frozen, portioned food item subject to an allergen recall—and instead collapses its decision onto the single most salient surface token, resulting in a confident but entirely incorrect prediction.
+
+
+
+
+### Comparative Analysis Across All Tasks and Models
+
+Figures present LIME explanations for representative misclassifications across all three pipeline stages and all six models. Analysing these failure cases collectively reveals both task-specific and model-specific failure modes, while exposing a shared underlying limitation.
+
+* **Task 1 and Task 2 Domain Mismatch:** 
+  * In Task 1, BERTweet's misclassification of a genuine alert as noise stems from its general-domain Twitter pre-training, which leads the model to associate clinical terminology (poisoning, coli, bacterial) with hyperbolic or non-literal language rather than genuine health signals.
+  * In Task 2, BioBERT exhibits the opposite tendency: its biomedical pre-training causes it to over-index on isolated clinical tokens such as poison, overshadowing the surrounding informal context and causing it to miss the food entity food entirely.
+  * These two cases together illustrate how domain mismatch—whether general Twitter data or formal biomedical corpora—can systematically distort predictions when models are applied to informal, real-world social media text.
+
+* **Task 3 Model-Specific Failure Modes:** 
+  * In Task 3, the three analysed models each exhibit a distinct but related failure mode. 
+  * RoBERTa-large anchors on dominant ingredient keywords (Nut, walnut, Seed), ignoring the composite and safety-relevant context of a mixed food recall. 
+  * Qwen2.5 reduces multi-ingredient prepared dishes to their most prominent protein component (parmigiana, chicken), failing to capture the ready-made nature of the product. 
+  * BERT-CNN-BiLSTM displays the most extreme single-token dependency, assigning approximately 90% of its predictive weight to pesto while disregarding all other contextual evidence. 
+  * Across all three models, tokens that carry genuine compositional or contextual meaning are systematically underweighted, while high-frequency or surface-salient tokens dominate the decision boundary.
+
+* **Shared Root Cause & Future Improvements:** 
+  * Taken together, these analyses highlight a common limitation across all five models: an over-reliance on partial lexical cues rather than a holistic interpretation of the input. 
+  * Whether manifesting as domain mismatch, clinical token anchoring, ingredient keyword fixation, protein-label conflation, or single-token collapse, each failure mode traces back to the same root cause—the absence of robust compositional and contextual understanding. 
+  * These findings underscore the importance of domain adaptation, diverse training data, and context-aware architectures for building reliable foodborne illness detection systems. 
+  * Potential improvements include fine-tuning on health-related social media corpora, augmenting training samples with linguistically diverse recall notices, and incorporating attention mechanisms that explicitly model token interactions and modifier relationships across the full input sequence.
