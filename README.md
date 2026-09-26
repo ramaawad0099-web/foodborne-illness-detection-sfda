@@ -29,12 +29,6 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 
 ---
 
-## Author
-**Rama Alshammari**  
-*Data Scientist | AI & Machine Learning Engineer*  
-- **Email:** ramaawad0099@gmail.com  
-- **GitHub:** https://github.com/ramaawad0099-web
-
 
 
 # Data Collection & Ingestion Framework
@@ -612,3 +606,14 @@ This project presents an AI-driven framework for automated foodborne illness det
 Transformer-based models demonstrated strong performance in identifying health alerts and classifying food hazards. To operationalize these results, an interactive dashboard and an Early Warning System (EWS) were implemented to visualize outbreaks, track geographical trends in real time, and support rapid public health decision-making. 
 
 Ultimately, the system highlights the practical value of combining artificial intelligence with real-world data to enhance public health surveillance, improve early detection, and mitigate the impact of foodborne outbreaks.
+
+
+
+
+
+## Author
+**Rama Alshammari**  
+*Data Scientist | AI & Machine Learning Engineer*  
+- **Email:** ramaawad0099@gmail.com  
+- **GitHub:** https://github.com/ramaawad0099-web
+
