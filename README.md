@@ -146,7 +146,6 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 
 ## ## Exploratory Data Analysis (EDA) — Raw Data Insights (FDA Data)
 ### Raw openFDA API Record Structure
-![FDA Raw Data Sample](10.png)
 
 - **Data Origin & Ingestion :** Highlights raw recall, product, and location records fetched directly via the **openFDA Food Enforcement API** prior to text normalization or schema restructuring.
 - **Structural Attributes:** Retains original API JSON/record key-value mappings covering essential regulatory metadata:
@@ -154,4 +153,12 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Product-Related:** `product_description`, `code_info`.
   - **Location & Entity Metadata:** `recalling_firm`, `city`, `state`, `country`.
 - **Engineering Value:** Validates the raw API payload schema, informing the automated ingestion pipeline, field selection, and preprocessing parser designed to format heterogeneous government records for downstream analysis.
+
+
+### Monthly Recall Activity Trend Analysis
+![Monthly Distribution of FDA Food Recalls](10.png)
+
+- **Temporal Trend :** Demonstrates the monthly fluctuations and longitudinal reporting volume of FDA food recall events.
+- **Pattern Identification:** Reveals noticeable seasonality and irregular reporting spikes across different months rather than an even temporal spread.
+- **Domain & Engineering Insight:** Identifying these longitudinal patterns provides crucial context for time-series aggregation, enabling the evaluation of regulatory enforcement cycles and potential seasonal outbreak surges.
 - 
