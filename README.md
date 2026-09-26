@@ -86,7 +86,7 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 ### Temporal Distribution Analysis
 ![Temporal Distribution of Reports](5.png)
 
-- **Temporal Trend (Figure 3.8):** Shows an uneven temporal distribution spanning from 1994 to recent years.
+- **Temporal Trend :** Shows an uneven temporal distribution spanning from 1994 to recent years.
   - **Early Baseline (1994–2005):** Sparse reporting density during early digital surveillance years.
   - **Growth & Surge (Post-2009 & Post-2012):** A sharp increase in volume starting after 2009, with significant activity peaks reaching up to 568 reports in specific peak years (e.g., 2016).
 - **Domain Interpretation:** The upward trajectory reflects systemic improvements in digitized reporting infrastructure and heightened regulatory surveillance over time, rather than an organic increase in actual foodborne illness incidents.
