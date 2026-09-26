@@ -183,7 +183,7 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 
 
 ### Missing Value Audit (Pre-Preprocessing)
-![Before Preprocessing: Missing Values by Column](14.png)
+![Before Preprocessing: Missing Values by Column](13.png)
 
 - **Completeness Audit :** Identifies missing value frequencies across all raw API attributes before preprocessing:
   - **Zero Missing Core Attributes:** Essential core fields required for model inputs (`product_description`, `reason_for_recall`, `recall_number`, `classification`, `status`, and `report_date`) contain **$0$ missing values**.
