@@ -180,3 +180,12 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **`product_description`:** Exhibits higher variability and longer lengths, with extreme right-skewed outliers (up to ~4,000 characters) due to detailed batch codes and embedded product specifications.
   - **`reason_for_recall`:** Displays a significantly narrower text-length range, remaining concise and concentrated near lower character bounds.
 - **Engineering Value:** Evaluates sequence length variability before text concatenation, establishing context-length baselines to prevent truncation of critical entity identifiers in the classification transformer model.
+
+
+### Missing Value Audit (Pre-Preprocessing)
+![Before Preprocessing: Missing Values by Column](14.png)
+
+- **Completeness Audit :** Identifies missing value frequencies across all raw API attributes before preprocessing:
+  - **Zero Missing Core Attributes:** Essential core fields required for model inputs (`product_description`, `reason_for_recall`, `recall_number`, `classification`, `status`, and `report_date`) contain **$0$ missing values**.
+  - **Optional Field Missingness:** Missing data is isolated to optional administrative attributes: `termination_date` ($423$ missing), `more_code_info` ($323$ missing), and `center_classification_date` ($1$ missing).
+- **Engineering Value & Preprocessing Rule:** Confirms that data filtering can strictly target records missing mandatory classification text, safely preserving records with missing optional fields without risking training sample size loss.
