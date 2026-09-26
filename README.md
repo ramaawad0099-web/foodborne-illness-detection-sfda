@@ -444,7 +444,7 @@ Task 3 evaluated four candidate architectures for multi-class product classifica
 
 To interpret model decision boundaries and diagnose failure cases, Local Interpretable Model-agnostic Explanations (LIME) was applied to analyze prediction behavior.
 
-![BERTweet Alert Detection - LIME XAI Explanation](24.png)
+![BERTweet Alert Detection - LIME XAI ](24.png)
 
 #### Error Case Analysis (False Negative Analysis)
 - **Sample Instance:** *"one in five office coffee mugs contains fecal bacterial and e.coli, which can cause diarrhea, food poisoning, and infections. corefact"*
@@ -458,7 +458,7 @@ To interpret model decision boundaries and diagnose failure cases, Local Interpr
 
 To analyze sub-word and token-level sequence labeling behavior, LIME was applied to inspect misclassified entities within Task 2.
 
-![BioBERT NER - LIME Token-Level Explanation](25.png)
+![BioBERT NER - LIME](25.png)
 
 - **Target Token:** `food`
 - **Sample Instance:** *"Came to a conclusion that I had freakin food poison ; )"*[cite: 7]
