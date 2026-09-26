@@ -54,3 +54,10 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 - **Class Breakdown:** 2,076 **Alert** tweets (Label 1) vs. 2,046 **Noise** tweets (Label 0).
 - **Dataset Balance:** Highly balanced distribution (~50/50 split across binary categories).
 - **Engineering Purpose:** Confirms dataset equilibrium, ensuring the classification model trains without class bias or requiring artificial resampling/reweighting techniques.
+
+- ### Named Entity Co-occurrence Matrix
+![Entity Co-occurrence Heatmap](3.png)
+
+- **Semantic Richness:** Evaluates joint entity occurrences (`food`, `loc`, `symptom`, `other`) within individual tweets for Named Entity Recognition (NER) pipeline design.
+- **Key Observation:** High co-occurrence values between `symptom` and `food` (342 co-occurrences) as well as `symptom` and `loc` (258 co-occurrences).
+- **Domain Relevance:** Validates that "Alert" signals represent granular, context-rich public health reports linking specific symptoms to distinct food items and locations, rather than generic slang.
