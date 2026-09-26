@@ -229,3 +229,11 @@ This phase evaluates the structural cleanliness, text normalization outcomes, an
     - Micro-level entities: `product_id`, `hazard_id`
 - **Imbalance Handling Strategy:** Opted to preserve natural class distributions rather than introducing synthetic noise via oversampling; class imbalance is directly handled using cost-conscious loss weighting during model training.
 
+![Before vs After Preprocessing: Text Length Comparison](17.png)
+
+Comparative Text Length Analysis (Figure 4.6): Compares the text length distribution before and after preprocessing.
+
+Processed Input Characteristics: The processed input text is longer because it combines the generated title and summary.
+
+Classification Impact: Combining these elements makes the FDA records more informative for classification.
+
