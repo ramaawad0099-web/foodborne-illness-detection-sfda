@@ -242,3 +242,10 @@ Classification Impact: Combining these elements makes the FDA records more infor
 * **Data Integrity Preservation:** Total rows and valid dates were completely preserved throughout the pipeline.
 * **Feature Pipeline Additions:** New essential fields were created for the final pipeline, including `source`, `title`, `text`, and `input_text`.
 
+
+
+![After Preprocessing: Generated Text Length Distribution](19.png)
+
+- **Generated Text Length Distribution :** Shows the text length distribution for the generated FDA fields (`title_length`, `text_length`, and `input_text_length`) after preprocessing.
+- **Title Conciseness:** The values for `title_length` are distinctly shorter, as the title was specifically designed to serve as a concise recall headline.
+- **Text & Input Comparison:** The `text_length` and `input_text_length` distributions cover broader text ranges, providing the necessary context for classification tasks.
