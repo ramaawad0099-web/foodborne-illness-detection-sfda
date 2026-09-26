@@ -90,3 +90,14 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Early Baseline (1994–2005):** Sparse reporting density during early digital surveillance years.
   - **Growth & Surge (Post-2009 & Post-2012):** A sharp increase in volume starting after 2009, with significant activity peaks reaching up to 568 reports in specific peak years (e.g., 2016).
 - **Domain Interpretation:** The upward trajectory reflects systemic improvements in digitized reporting infrastructure and heightened regulatory surveillance over time, rather than an organic increase in actual foodborne illness incidents.
+
+
+### Geographical Report Distribution
+![Country Distribution Plot](6.png)
+
+- **Regional Breakdown :** Reporting volume is concentrated across key Anglophone public health jurisdictions:
+  - **United States (`us`):** 2,195 reports (Primary contributor)
+  - **Australia (`au`):** 921 reports
+  - **Canada (`ca`):** 856 reports
+  - **United Kingdom (`uk`):** 687 reports
+- **Geographic Representation:** Demonstrates regional dominance in public health logging, informing regional risk-normalization strategies when modeling international outbreak trends.
