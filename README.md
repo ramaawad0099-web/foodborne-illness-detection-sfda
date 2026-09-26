@@ -310,3 +310,65 @@ This section details the modeling architecture of the food safety monitoring sys
 * **Visualization & Dashboard:** Displays processed data on an interactive dashboard featuring real-time alert monitoring, geospatial mapping, and pattern anomaly detection to support surveillance and early warning decisions.
 
 ![Overall System Architecture Pipeline](20.png)
+
+
+## Model Building & Pipeline Engineering
+
+This section details the design and implementation of separate machine learning pipelines across three core tasks. Each task was developed, tuned, and configured independently using task-specific architectures and optimization strategies.
+
+---
+
+### Task 1: Alert Detection (Binary Classification)
+
+Acts as the primary filtering gate to separate valid food safety alerts from general social media noise.
+
+- **Backbone Architecture:** `BERTweet` (pre-trained on Twitter data for handling informal text).
+- **Data Splitting Strategy:** Cleaned tweet text mapped to binary target labels (`alert` / `non-alert`). Stratified split into **70% Train / 10% Validation / 20% Test** using a fixed random seed (`42`).
+- **Preprocessing & Tokenization:** Tokenized via `AutoTokenizer` with normalization, sequence truncation, and max padding set to `128` tokens.
+- **Training Setup & Optimization:** Fine-tuned using Hugging Face `Trainer` API with standard Cross-Entropy Loss.
+- **Hyperparameter Search Space (Random Search - 5 Trials):**
+  - **Learning Rate:** `[1e-5, 2e-5, 3e-5, 5e-5]`
+  - **Batch Size:** `[8, 16, 32]`
+  - **Epochs:** `[3, 5, 10]` | **Weight Decay:** `[0.0, 0.01, 0.1]`
+- **Regularization & Early Stopping:** Evaluated at each epoch; best checkpoint selected via validation F1-score with early stopping (`patience=2`).
+- **Explainability Integration:** Integrated **LIME** post-testing to analyze word-level feature contributions driving binary decision boundaries.
+- **Tech Stack:** Python, PyTorch, Hugging Face `Transformers`, `scikit-learn`, `LIME`, `Matplotlib`.
+
+---
+
+### Task 2: Named Entity Recognition (Token-Level Sequence Labeling)
+
+Extracts domain-specific entities (`food`, `symptom`, `location`) from validated alert tweets using the BIO tagging scheme (`O`, `B-food`, `I-food`, `B-symptom`, `I-symptom`, `B-loc`, `I-loc`).
+
+- **Backbone Architecture:** `BioBERT` (pre-trained on biomedical corpora for domain-specific terminology).
+- **Data Refinement & Splitting:**
+  - Standardized entity tags to the predefined 7-label BIO set; unmapped entities set to `O`.
+  - Applied rule-based term dictionaries to enrich token-level annotations.
+  - Split dataset into **70% Train / 10% Validation / 20% Test** (Seed: `42`).
+  - **Class Rebalancing:** Upsampled entity-bearing training rows to mitigate `O`-label dominance.
+- **Subword Alignment & Padding:** Handled transformer subword tokenization by aligning original word tokens to subwords while ignoring subword loss tokens. Max length set to `128` tokens.
+- **Hyperparameter Search Space (Random Search - 8 Trials):**
+  - **Learning Rate:** `[1e-5, 2e-5, 3e-5]`
+  - **Epochs:** `[3, 5, 7, 10]` | **Weight Decay:** `[0.0, 0.01, 0.1]` | **Batch Size:** `8`
+- **Regularization:** Checkpoint selection guided by top Validation F1-score with early stopping (`patience=2`).
+- **Tech Stack:** Python, PyTorch, Hugging Face (`AutoModelForTokenClassification`, `DataCollatorForTokenClassification`), `seqeval`, `Pandas`.
+
+---
+
+### Task 3: Product Category Classification (Multi-Class Classification)
+
+Categorizes incidents into standardized food product categories by benchmarking multiple transformer and hybrid architectures.
+
+- **Evaluated Architectures:** `RoBERTa-large`, `ModernBERT-base`, `Qwen2.5-0.5B`, and `BERT-CNN-BiLSTM`.
+- **Data Strategy & Rebalancing:**
+  - Feature Engineering: Combined `title` and `text` into a single sequence input field.
+  - Pruned rare categories with fewer than 10 instances; encoded remaining labels into numeric format.
+  - Split into **70% Train / 10% Validation / 20% Test** (Seed: `42`).
+  - **Loss Reweighting:** Computed class weights from training set to penalize class imbalance within Cross-Entropy Loss.
+- **Hyperparameter Search Space (Random Search - 8 Trials per Model):**
+  - **Learning Rate:** `[1e-5, 2e-5, 3e-5]`
+  - **Batch Size:** `[2, 4]`
+  - **Epochs:** `[3, 5, 8, 10]` | **Weight Decay:** `[0.0, 0.01, 0.1]`
+- **Model Tuning Protocol:** Standardized training setup across candidate models; selected optimal checkpoints based on Validation Macro F1-score (`patience=2`).
+- **Explainability Integration:** Applied **LIME** to misclassified instances to visualize word influence on category selection.
+- **Tech Stack:** Python, PyTorch, Hugging Face `Transformers`, `scikit-learn`, `LIME`, `NumPy`.
