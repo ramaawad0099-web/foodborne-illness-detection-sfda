@@ -297,15 +297,16 @@ Classification Impact: Combining these elements makes the FDA records more infor
 
 This section details the modeling architecture of the food safety monitoring system. It outlines the end-to-end processing pipeline, model selection rationale across tasks, and the integration of machine learning outputs into actionable analytical dashboards.
 
-The system is structured around three core intelligence tasks:
-1. **Task 1: Alert Detection** — Social media filtering using domain-specific Transformers.
-2. **Task 2: Named Entity Recognition (NER)** — Extraction of fine-grained food hazard parameters.
-3. **Task 3: Product Category Classification** — Categorization of validated social signals and official agency records.
-
----
 
 ## System Architecture Overview
 
-The system transforms raw, unstructured multi-source text into structured, real-time risk analytical feeds. The operational architecture spans six progressive processing stages:
+
+* **System Purpose:** Designed to transform unstructured food safety-related textual data into structured analytical outputs to support foodborne illness monitoring and early warning.
+* **Data Ingestion & Preprocessing:** Data is collected from social media posts and official food safety alerts. Social media data is cleaned to remove noise, special characters, URLs, and irrelevant tokens, while official FDA records are cleaned and formatted for consistency.
+* **Task 1: Alert Detection:** Uses the BERTweet model to classify tweets as real foodborne illness alerts or non-hazard/noisy messages. Non-alerts are filtered out, ensuring only relevant hazard information proceeds.
+* **Task 2: Named Entity Recognition (NER):** Uses the BioBERT model on filtered tweets to extract key entities such as food products, hazards, and locations, converting text into structured entity-level information.
+* **Task 3: Product Category Classification:** Takes preprocessed official alerts and validated Task 1 tweets to predict food product categories using evaluated models including RoBERTa-large, BERT-CNN-BiLSTM, ModernBERT-Large, and Qwen2.5.
+* **Merged Data & Representation:** Combines extracted entities, predicted product categories, and preprocessed information into a unified structured dataset as the foundation for analysis.
+* **Visualization & Dashboard:** Displays processed data on an interactive dashboard featuring real-time alert monitoring, geospatial mapping, and pattern anomaly detection to support surveillance and early warning decisions.
 
 ![Overall System Architecture Pipeline](20.png)
