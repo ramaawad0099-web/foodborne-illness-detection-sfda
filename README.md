@@ -475,9 +475,9 @@ To analyze sub-word and token-level sequence labeling behavior, LIME was applied
 
 
 
+#### Token-Level NER Error Case Analysis (BioBERT)
 
-
-![BioBERT NER - LIME](25.png)
+To analyze sub-word and token-level sequence labeling behavior, LIME was applied to inspect misclassified entities within Task 2.
 
 - **Target Token:** `food`
 - **Sample Instance:** *"Came to a conclusion that I had freakin food poison ; )"*[cite: 7]
@@ -487,3 +487,5 @@ To analyze sub-word and token-level sequence labeling behavior, LIME was applied
   - **Negative Importance on Target Entity:** The target token `food` receives the largest negative score (~`-0.30`), actively opposing its correct `B-food` label[cite: 7].
   - **Context Tokens:** Auxiliary words (`to`, `freakin`, `a`, `I`, `Came`) contribute minor positive weights to `O`, while `had` and `conclusion` reinforce the misclassification to a lesser degree[cite: 7].
 - **Root Cause Insight:** Demonstrates that BioBERT's biomedical pre-training causes it to anchor excessively on isolated clinical terms like `poison`, overshadowing colloquial food entity contexts in informal social media phrasing[cite: 7].
+
+![BioBERT NER - LIME Token-Level Explanation](25.png)
