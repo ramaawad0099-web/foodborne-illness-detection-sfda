@@ -35,6 +35,48 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 - **Email:** ramaawad0099@gmail.com  
 - **GitHub:** https://github.com/ramaawad0099-web
 
+
+
+# 3.2.1 Data Collection & Ingestion Framework
+
+The system utilizes a multi-source data ingestion strategy to balance real-time hazard detection with high-precision regulatory monitoring. Data sources are categorized into three operational pillars:
+
+1. **Social Media Streams (X/Twitter):** Unstructured, real-time social text serving as an early-warning signal for foodborne illness detection, integrated directly into the dashboard.
+2. **Official Regulatory Enforcement Data (openFDA):** Structured government enforcement feeds establishing ground-truth baselines for confirmed global food safety threats.
+3. **Supervised Training Corpora:** Academic-standard, expert-annotated datasets (**TWEET-FID** and **SemEval-2025 Task 9**) used to train and calibrate Transformer classification models.
+
+---
+
+## Data Sources & Pipeline Specifications
+
+### 1. TWEET-FID Dataset (Social Sentinel Corpus)
+* **Origin & Ingestion:** Acquired via direct communication with original researchers (Dr. Ruofan Hu). Collected via the Twitter API using foodborne illness tracking keywords (`#foodpoisoning`, `stomach`, `vomit`).
+* **Publication & Temporal Range:** Initiated in January 2019; published in May 2022.
+* **Corpus Scale & Selection:** Filtered from an initial pool of over 6 million tweets down to a curated, expert-annotated subset of **4,122 tweets**.
+* **Negative Control Sampling:** Includes 1,000 randomized non-keyword tweets to train models on ambient, non-alert baseline social text.
+* **Role in Pipeline:** Serves as the primary training and evaluation foundation for early illness detection models.
+
+---
+
+### 2. SemEval-2025 Task 9 Dataset (Food Hazard Challenge)
+* **Origin & Ingestion:** Benchmark corpus derived from official global food safety agencies (including the U.S. FDA and international equivalents).
+* **Corpus Scale:** Contains **5,082 manually annotated reports** evaluated by food science and technology domain experts.
+* **Schema Attributes:** Consists of 10 structured fields combining textual, categorical, and temporal metadata: `country`, `title`, `text`, `hazard-category`, `product-category`, `hazard`, `product`, `year`, `month`, and `day`.
+* **Multi-Task Optimization Target:**
+  * **Sub-Task 1 (ST1):** Target variables are `hazard-category` and `product-category`.
+  * **Sub-Task 2 (ST2):** Target variables are micro-entities `hazard` and `product`.
+
+---
+
+### 3. openFDA Enforcement Dataset (Regulatory Monitoring)
+* **Ingestion Protocol:** Automated extraction of structured JSON payloads via the **openFDA Food Enforcement API**.
+* **Corpus Scale & Features:** Extracted **1,000 raw FDA recall records** mapped across 25 descriptive fields spanning four core analytical dimensions:
+  * **Event & Firm Metadata:** `event_id`, `recalling_firm`, `address_1`, `city`, `state`, `country`, `postal_code`.
+  * **Product & Hazard Description:** `product_description`, `reason_for_recall`, `code_info`, `product_quantity`, `distribution_pattern`.
+  * **Regulatory Status:** `status`, `classification`, `product_type`, `recall_number`.
+  * **Temporal Tracking:** `recall_initiation_date`, `center_classification_date`, `report_date`, `termination_date` (ingested as string objects in `YYYYMMDD` format).
+* **Data Transformation:** Ingested JSON structures are dynamically converted into Pandas DataFrames to feed the feature engineering and product category classification pipeline.
+
   ## ## Exploratory Data Analysis (EDA) — Raw Data Insights (TWEET-FID Data)
 
 ### Tweet Length Distribution 
