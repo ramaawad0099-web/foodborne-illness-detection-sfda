@@ -506,7 +506,6 @@ The third task involves classifying food recall notices into product categories 
   * **Negative Importance on Diagnostic Tokens:** Diagnostic terms for the correct category (`Cranberry`, `Georgia`, `pain`, `potentially`, `grocery`, `Listeria`) received negative importance scores, with the pathogen *Listeria* incorrectly treated as evidence against the class .
 * **Root Cause Insight:** Demonstrates that RoBERTa-large relies too heavily on dominant ingredient keywords, failing to capture the composite nature of mixed food products and their broader safety context .
 
-
 ### Task 3: Product Category Classification Explainability (ModernBERT-large)
 
 Despite being the best-performing model overall on this task, ModernBERT-large is not immune to misclassification in boundary cases[cite: 11].
@@ -516,6 +515,6 @@ Despite being the best-performing model overall on this task, ModernBERT-large i
 * **Sample Incident:** An Alexia Foods recall notice involving "olive oil, sun-dried tomatoes pesto oven reds frozen potatoes" (True Category: *prepared dishes and snacks*).
 * **Prediction:** *fruits and vegetables*.
 * **Key LIME Findings:**
-  * **Positive Contribution to Wrong Label:** Dominated by produce-associated tokens, with `potatoes` (~+0.35) acting as the single strongest contributor, followed by `tomatoes` (~+0.20), `oven`, `sun`, `due`, `release`, `was`, and `dried` (~+0.11–+0.12).
+  * **Positive Contribution to Wrong Label:** Dominated by produce-associated tokens, with `potatoes` (~+0.35) acting as the single strongest contributor, followed by `tomatoes` (~+0.20), `oven`, `sun`, `due`, `release`, `was`, and `dried` (~+0.11 to +0.12).
   * **Negative Importance on Processed Signals:** Tokens signaling a processed, prepared nature—such as `oil` (~-0.22), `pesto` (~-0.15), `alexia` (~-0.12), `frozen` (~-0.09), and `white`—oppose the predicted label, but their collective negative weight is insufficient to override the strong produce signal.
-* **Root Cause Insight:** Demonstrates that even ModernBERT-large can collapse the identity of a multi-ingredient processed product onto its most recognizable raw components, particularly when produce terms are prominent throughout the recall text .
+* **Root Cause Insight:** Demonstrates that even ModernBERT-large can collapse the identity of a multi-ingredient processed product onto its most recognizable raw components, particularly when produce terms are prominent throughout the recall text.
