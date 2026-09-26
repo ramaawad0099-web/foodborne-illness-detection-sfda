@@ -505,10 +505,9 @@ The third task involves classifying food recall notices into product categories 
   * **Positive Contribution to Wrong Label:** Overwhelmingly driven by dominant lexical tokens (`Nut` [~ +0.32], `walnut`, `nut`, `Seed`) alongside incidental contextual tokens (`the`, `Alabama`, `said`) .
   * **Negative Importance on Diagnostic Tokens:** Diagnostic terms for the correct category (`Cranberry`, `Georgia`, `pain`, `potentially`, `grocery`, `Listeria`) received negative importance scores, with the pathogen *Listeria* incorrectly treated as evidence against the class .
 * **Root Cause Insight:** Demonstrates that RoBERTa-large relies too heavily on dominant ingredient keywords, failing to capture the composite nature of mixed food products and their broader safety context .
-
 ### Task 3: Product Category Classification Explainability (ModernBERT-large)
 
-Despite being the best-performing model overall on this task, ModernBERT-large is not immune to misclassification in boundary cases[cite: 11].
+Despite being the best-performing model overall on this task, ModernBERT-large is not immune to misclassification in boundary cases.
 
 ![ModernBERT-large LIME Explanation](27.png)
 
