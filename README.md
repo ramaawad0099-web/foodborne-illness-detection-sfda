@@ -114,3 +114,14 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Prepared Dishes and Snacks:** $9.2\%$
   - **Low-Risk Categories:** Items like sugars and syrups each contribute less than $1\%$.
 - **Regulatory Alignment:** Reflects highly targeted surveillance focused on high-risk, perishable, and animal-derived food groups susceptible to microbial contamination.
+
+
+### Granular Product Specificity Analysis
+![Top 10 Products Plot](8.png)
+
+- **Product Diversity :** Identifies **1,022 unique product names**, demonstrating extremely high specificity in public health incident logging.
+- **Frequent High-Risk Specific Products:**
+  - **Ice Cream:** 185 instances
+  - **Chicken-based Products:** 138 instances
+  - Followed by cakes, ready-to-eat meals, cookies, cheese, salads, ground beef, salmon, and peanuts.
+- **Long-Tail Distribution:** While high-risk specific items recur frequently, the vast majority of unique products appear only once, emphasizing the necessity of robust NLP entity-extraction pipelines capable of handling rare and unseen vocabulary.
