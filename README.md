@@ -604,12 +604,11 @@ Overall, the implemented dashboard transforms the structured outputs generated b
 
 
 
+
 ### Conclusion
 
-In conclusion, this project presented an intelligent AI-driven framework for the automated detection of foodborne illness incidents using data collected from global news sources, public health reports, and social media platforms. The system was developed following the CRISP-DM methodology to ensure a structured workflow from data collection to deployment. By integrating Natural Language Processing (NLP), Named Entity Recognition (NER), and machine learning classification models, the system successfully analyzed large volumes of unstructured textual data and extracted meaningful outbreak-related information.
+This project presents an AI-driven framework for automated foodborne illness detection using data from global news, public health reports, and social media. Developed using the CRISP-DM methodology, the system integrates Natural Language Processing (NLP) and machine learning models to analyze unstructured text and extract outbreak-related insights. 
 
-Throughout the project, multiple datasets from reliable sources were collected, cleaned, and unified into a structured format suitable for modeling. Several deep learning models were trained and evaluated to perform alert detection and product category classification tasks. Transformer-based models demonstrated strong performance in identifying relevant foodborne illness signals and classifying food-related hazards. These results confirm the effectiveness of modern NLP techniques in processing large-scale text data and improving detection accuracy.
+Transformer-based models demonstrated strong performance in identifying health alerts and classifying food hazards. To operationalize these results, an interactive dashboard and an Early Warning System (EWS) were implemented to visualize outbreaks, track geographical trends in real time, and support rapid public health decision-making. 
 
-In addition to predictive modeling, an interactive dashboard was developed to visualize detected outbreaks, extracted entities, and geographical trends in real time. The system also includes an Early Warning System (EWS) capable of generating alerts when potential foodborne risks are detected. This functionality supports faster response and informed decision-making by public health authorities.
-
-Overall, the proposed system demonstrates the practical value of integrating artificial intelligence with real-world data sources to enhance public health surveillance. The project contributes to the community by improving early detection of foodborne illnesses, supporting proactive intervention strategies, and reducing the potential health and economic impacts of outbreaks.
+Ultimately, the system highlights the practical value of combining artificial intelligence with real-world data to enhance public health surveillance, improve early detection, and mitigate the impact of foodborne outbreaks.
