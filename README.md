@@ -453,3 +453,18 @@ To interpret model decision boundaries and diagnose failure cases, Local Interpr
   - **Positive Contribution to Noise:** Generic and contextual tokens (`can`, `mugs`, `and`, `corefact`, `in`, `which`, `contains`, `infections`) incorrectly drove the prediction toward the `Noise` label.
   - **Negative Contribution to Alert:** Strong microbiological and health indicators (`poisoning`, `coli`, `bacterial`, `food`, `coffee`, `fecal`) pushed away from the correct `Alert` classification.
 - **Root Cause Insight:** Highlights a pre-training limitation where BERTweet occasionally maps clinical terminology in informal, trivia-style contexts to non-alert social chatter, suppressing true signals.
+
+#### Token-Level NER Error Case Analysis (BioBERT)
+
+To analyze sub-word and token-level sequence labeling behavior, LIME was applied to inspect misclassified entities within Task 2.
+
+![BioBERT NER - LIME Token-Level Explanation](25.png)
+
+- **Target Token:** `food`
+- **Sample Instance:** *"Came to a conclusion that I had freakin food poison ; )"*[cite: 7]
+- **Ground Truth:** `B-food` | **Predicted:** `O`[cite: 7]
+- **Key LIME Findings:**
+  - **Over-Anchoring on Clinical Cues:** The token `poison` heavily dominates with an extreme positive importance score (~`+0.40`), strongly driving the token-level prediction toward the non-entity `O` label[cite: 7].
+  - **Negative Importance on Target Entity:** The target token `food` receives the largest negative score (~`-0.30`), actively opposing its correct `B-food` label[cite: 7].
+  - **Context Tokens:** Auxiliary words (`to`, `freakin`, `a`, `I`, `Came`) contribute minor positive weights to `O`, while `had` and `conclusion` reinforce the misclassification to a lesser degree[cite: 7].
+- **Root Cause Insight:** Demonstrates that BioBERT's biomedical pre-training causes it to anchor excessively on isolated clinical terms like `poison`, overshadowing colloquial food entity contexts in informal social media phrasing[cite: 7].
