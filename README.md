@@ -382,3 +382,60 @@ The model development and training pipeline was implemented using cloud-based GP
 - **Core Frameworks & Libraries:** Built primarily in **Python**, leveraging **PyTorch** and the **Hugging Face Transformers** ecosystem for downloading pre-trained models, tokenization, fine-tuning, sequence evaluation, and model serialization.
 - **Storage & Artifact Management:** Integrated with **Google Drive** for persistent storage of dataset versions, experimental checkpoints, evaluation logs, and finalized model artifacts.
 - **Deployment Readiness:** Trained and fine-tuned model checkpoints were serialized and structured for seamless downstream integration into the interactive dashboard.
+
+
+## Model Evaluation & Experimental Results
+
+To rigorously assess model performance, a multifaceted evaluation strategy was applied using standard classification metrics across all tasks. Hyperparameter tuning was conducted using Random Search to optimize learning rate, batch size, weight decay, and training epochs.
+
+---
+
+### Task 1: Alert Detection Performance (BERTweet)
+
+The optimal configuration identified via random search consisted of: `learning rate = 1e-5`, `batch size = 8`, `weight decay = 0.01`, and `epochs = 10`.
+
+#### BERTweet Fine-Tuning Performance
+| Setting | Accuracy | Precision | Recall | F1-Score |
+| :--- | :---: | :---: | :---: | :---: |
+| **Before Tuning** | 0.8545 | 0.8271 | 0.8993 | 0.8617 |
+| **After Tuning** | 0.8534 | 0.8819 | 0.8187 | 0.8491 |
+
+- **Optimization Impact:** Tuning elevated precision from `0.8271` to `0.8819`, significantly reducing false positive alerts—a key requirement for real-time hazard monitoring.
+- **Confusion Matrix Breakdown (Post-Tuning):**
+  - **Noise Class:** 391 correctly classified, 49 false positives.
+  - **Alert Class:** 366 correctly identified, 81 false negatives.
+
+---
+
+### Task 2: Named Entity Recognition Performance (BioBERT)
+
+The optimal configuration identified consisted of: `learning rate = 3e-5`, `epochs = 7`, and `weight decay = 0.0`.
+
+#### BioBERT NER Performance
+| Setting | Precision | Recall | F1-Score | Accuracy |
+| :--- | :---: | :---: | :---: | :---: |
+| **Before Tuning** | 0.7392 | 0.6814 | 0.7091 | 0.9596 |
+| **After Tuning** | 0.7267 | 0.6795 | 0.7023 | 0.9602 |
+
+- **Per-Entity Performance:** Strong extraction accuracy on `symptom` entities (`F1 = 0.81`), with persistent challenges on `food` (`F1 = 0.54`) and `location` (`F1 = 0.50`) due to social media text ambiguity, justifying rule-based dictionary enrichment.
+
+---
+
+### Task 3: Product Category Classification (Model Benchmarking)
+
+Task 3 evaluated four candidate architectures for multi-class product classification after hyperparameter tuning.
+
+#### Benchmark Model Comparison (Post-Tuning)
+| Model | Macro Accuracy | Macro Precision | Macro Recall | Macro F1 |
+| :--- | :---: | :---: | :---: | :---: |
+| **ModernBERT-Large** | **0.8170** | **0.7757** | **0.7183** | **0.7401** |
+| **RoBERTa-large** | 0.8117 | 0.7595 | 0.7327 | 0.7384 |
+| **Qwen2.5** | 0.8049 | 0.7609 | 0.7088 | 0.7242 |
+| **BERT-CNN-BiLSTM** | 0.8018 | 0.7348 | 0.7035 | 0.7095 |
+
+![Macro Metrics Comparison Across Task 3 Candidate Models](23.png)
+
+- **Comparative Key Findings:** 
+  - **ModernBERT-Large** achieved the top overall performance with a **Macro F1 of 0.7401** and **Macro Accuracy of 0.8170**.
+  - **RoBERTa-large** followed closely (`Macro F1 = 0.7384`), showcasing deep 24-layer contextual representations.
+  - Pure transformer architectures consistently outperformed the hybrid **BERT-CNN-BiLSTM** baseline (`Macro F1 = 0.7095`).
