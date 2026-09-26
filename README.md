@@ -189,3 +189,22 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Zero Missing Core Attributes:** Essential core fields required for model inputs (`product_description`, `reason_for_recall`, `recall_number`, `classification`, `status`, and `report_date`) contain **$0$ missing values**.
   - **Optional Field Missingness:** Missing data is isolated to optional administrative attributes: `termination_date` ($423$ missing), `more_code_info` ($323$ missing), and `center_classification_date` ($1$ missing).
 - **Engineering Value & Preprocessing Rule:** Confirms that data filtering can strictly target records missing mandatory classification text, safely preserving records with missing optional fields without risking training sample size loss.
+
+---
+
+## Exploratory Data Analysis (EDA) — Post-Preprocessing
+
+This phase evaluates the structural cleanliness, text normalization outcomes, and dataset stability across all three datasets following the execution of cleaning and feature engineering pipelines.
+
+---
+
+### 1. TWEET-FID Dataset (Post-Preprocessing)
+
+![Character Length Distribution After Preprocessing](14.png)
+
+- **Post-Cleaning Structural Stability (Figure 4.2):** Analyzes character-length metrics across cleaned tweets:
+  - **Mean Tweet Length:** Standardized to $\approx 154$ characters after noise reduction.
+  - **Distribution Shape:** Preserves a stable multi-modal distribution, demonstrating that web artifacts, URLs, and user mentions were removed without stripping core semantic context or diagnostic text content.
+- **Engineering Outcome:** Confirms optimal input length alignment for tokenization without creating empty sequences or artificial character truncations.
+
+
