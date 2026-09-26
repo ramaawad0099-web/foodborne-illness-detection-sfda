@@ -215,3 +215,17 @@ This phase evaluates the structural cleanliness, text normalization outcomes, an
 - **Engineering Value:** Validates that preprocessing successfully isolated and eliminated irrelevant variance while keeping the underlying semantic signal fully intact and highly representative for downstream tokenization and model training.
 
 
+### 2. SemEval-2025 Task 9 Dataset (Post-Preprocessing)
+
+![SemEval-2025 Task9 Data after preprocessing](16.png)
+
+- **Structural Transformer Optimization :** Applied domain-aware cleanup pipelines to standardize text inputs while preserving structural context:
+  - **Non-Semantic Noise Reduction:** Stripped HTML artifacts, raw URLs, and generic contact metadata.
+  - **Punctuation Protection:** Safely preserved critical punctuation (colons, dashes, scientific symbols) vital for domain-specific hazard codes and chemical identifiers.
+- **Key Transformation Highlights:**
+  - **Text Consistency:** Executed Unicode character normalization and purged 18 exact duplicate records to protect model optimization from repeating encoding errors.
+  - **Objective Readiness & Target Encoding:** Encoded all four target entities into integer ID mappings required for transformer loss computation:
+    - High-level categories: `product_category_id`, `hazard_category_id`
+    - Micro-level entities: `product_id`, `hazard_id`
+- **Imbalance Handling Strategy:** Opted to preserve natural class distributions rather than introducing synthetic noise via oversampling; class imbalance is directly handled using cost-conscious loss weighting during model training.
+
