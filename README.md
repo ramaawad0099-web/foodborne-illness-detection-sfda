@@ -487,3 +487,21 @@ To analyze sub-word and token-level sequence labeling behavior, LIME was applied
 * **Root Cause Insight:** Demonstrates that BioBERT's biomedical pre-training causes it to anchor excessively on isolated clinical terms like `poison`, overshadowing colloquial food entity contexts in informal social media phrasing.
 
 ![BioBERT NER - LIME Token-Level Explanation](25.png)
+
+
+
+
+
+
+### Task 3: Product Category Classification Explainability (RoBERTa-large)
+
+The third task involves classifying food recall notices into product categories . LIME was applied to candidate models (RoBERTa-large, Qwen2.5, and BERT-CNN-BiLSTM) to analyze failure modes, while ModernBERT-Large was omitted due to superior generalization resulting in fewer diagnostic failure cases .
+
+![RoBERTa-large LIME Explanation](26.png)
+
+* **Sample Incident:** A Publix recall notice for a cranberry nut and seed mix contaminated with *Listeria monocytogenes* (True Category: *prepared dishes and snacks*) .
+* **Prediction:** *nuts, nut products and seeds* with near-perfect confidence (99.95%) .
+* **Key LIME Findings:**
+  * **Positive Contribution to Wrong Label:** Overwhelmingly driven by dominant lexical tokens (`Nut` [~ +0.32], `walnut`, `nut`, `Seed`) alongside incidental contextual tokens (`the`, `Alabama`, `said`) .
+  * **Negative Importance on Diagnostic Tokens:** Diagnostic terms for the correct category (`Cranberry`, `Georgia`, `pain`, `potentially`, `grocery`, `Listeria`) received negative importance scores, with the pathogen *Listeria* incorrectly treated as evidence against the class .
+* **Root Cause Insight:** Demonstrates that RoBERTa-large relies too heavily on dominant ingredient keywords, failing to capture the composite nature of mixed food products and their broader safety context .
