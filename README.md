@@ -148,7 +148,7 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 ### Raw openFDA API Record Structure
 ![FDA Raw Data Sample](10.png)
 
-- **Data Origin & Ingestion (Figure 3.13):** Highlights raw recall, product, and location records fetched directly via the **openFDA Food Enforcement API** prior to text normalization or schema restructuring.
+- **Data Origin & Ingestion :** Highlights raw recall, product, and location records fetched directly via the **openFDA Food Enforcement API** prior to text normalization or schema restructuring.
 - **Structural Attributes:** Retains original API JSON/record key-value mappings covering essential regulatory metadata:
   - **Recall-Related:** `recall_number`, `reason_for_recall`, `status`, `classification`.
   - **Product-Related:** `product_description`, `code_info`.
