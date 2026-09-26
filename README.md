@@ -34,12 +34,13 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 *Data Scientist | AI & Machine Learning Engineer*  
 - **Email:** ramaawad0099@gmail.com  
 - **GitHub:** https://github.com/ramaawad0099-web
-
 ## Exploratory Data Analysis (EDA)
 
 ### Raw Tweet Length Distribution (Pre-Preprocessing)
 ![Tweet Length Distribution](1.png)
 
-- **Dataset Scope:** Analysis conducted on raw, uncleaned tweets (4,122 samples) prior to tokenization and text preprocessing.
-- **Key Insight:** Shows a natural character distribution with a mean length of 154 characters and a peak near 140–280 characters.
-- **Engineering Purpose:** Guided the baseline text-cleaning strategy and informed the selection of the optimal `max_length` hyperparameter for the **BERTweet** model to prevent truncation of critical context.
+> **Note on Data State:** This exploratory analysis was performed on the **raw, uncleaned dataset** prior to text preprocessing and tokenization. 
+
+- **Dataset Scope:** Analyzed 4,122 raw tweets directly after multi-source ingestion[cite: 9].
+- **Key Observation:** The character distribution peaks around typical Twitter limits with a mean length of 154 characters[cite: 9].
+- **Engineering Value:** Identifying this baseline distribution guided the subsequent text-cleaning steps and established the optimal `max_length` parameter for the **BERTweet** model, preventing context truncation while maintaining processing efficiency[cite: 9].
