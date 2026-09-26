@@ -531,9 +531,9 @@ The instance involves a recall notice for a chicken parmigiana with creamy mashe
 
 ![Qwen2.5 LIME Explanation](28.png)
 
-* **Sample Incident:** A recall notice for a chicken parmigiana with creamy mashed potato (True Category: *prepared dishes and snacks*)[cite: 15].
-* **Prediction:** *meat, egg and dairy products*[cite: 15].
+* **Sample Incident:** A recall notice for a chicken parmigiana with creamy mashed potato (True Category: *prepared dishes and snacks*).
+* **Prediction:** *meat, egg and dairy products*.
 * **Key LIME Findings:**
-  * **Positive Contribution to Wrong Label:** The model’s prediction is driven by tokens closely associated with protein and dairy, with `parmigiana` (approximately +0.29) and `chicken` (approximately +0.28) dominating as the strongest positive contributors, followed by `creamy`, `any`, `supporting`, `refund`, `with`, and `recall`[cite: 15].
-  * **Negative Importance on Prepared Signals:** Tokens that are more indicative of a prepared, composite dish—such as `potato`, `meal`, `made`, `ready`, `products`, `close`, and `400g`—all contribute negatively, actively working against the correct classification[cite: 15].
-* **Root Cause Insight:** This failure mode indicates that Qwen2.5 struggles to capture compositional semantics: rather than interpreting the product as a ready-made meal containing multiple ingredients, the model reduces it to its most prominent protein component, leading to a systematic misclassification of multi-ingredient prepared dishes[cite: 15].
+  * **Positive Contribution to Wrong Label:** The model’s prediction is driven by tokens closely associated with protein and dairy, with `parmigiana` (approximately +0.29) and `chicken` (approximately +0.28) dominating as the strongest positive contributors, followed by `creamy`, `any`, `supporting`, `refund`, `with`, and `recall`.
+  * **Negative Importance on Prepared Signals:** Tokens that are more indicative of a prepared, composite dish—such as `potato`, `meal`, `made`, `ready`, `products`, `close`, and `400g`—all contribute negatively, actively working against the correct classification .
+* **Root Cause Insight:** This failure mode indicates that Qwen2.5 struggles to capture compositional semantics: rather than interpreting the product as a ready-made meal containing multiple ingredients, the model reduces it to its most prominent protein component, leading to a systematic misclassification of multi-ingredient prepared dishes .
