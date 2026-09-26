@@ -137,4 +137,21 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Milk and Products Thereof (Allergen):** $11.6\%$
   - **Moderate Frequency Risks:** *Escherichia coli*, peanut allergens, gluten/wheat allergens, plastic fragments, soy, and metal fragments.
 - **Long-Tail Pattern:** A heavy concentration in primary biological pathogens and top-tier allergens, with a long tail of minor physical contaminants appearing only once or twice.
+
+
+
+
+---
+
+
+## ## Exploratory Data Analysis (EDA) — Raw Data Insights (FDA Data)
+### Raw openFDA API Record Structure
+![FDA Raw Data Sample](10.png)
+
+- **Data Origin & Ingestion (Figure 3.13):** Highlights raw recall, product, and location records fetched directly via the **openFDA Food Enforcement API** prior to text normalization or schema restructuring.
+- **Structural Attributes:** Retains original API JSON/record key-value mappings covering essential regulatory metadata:
+  - **Recall-Related:** `recall_number`, `reason_for_recall`, `status`, `classification`.
+  - **Product-Related:** `product_description`, `code_info`.
+  - **Location & Entity Metadata:** `recalling_firm`, `city`, `state`, `country`.
+- **Engineering Value:** Validates the raw API payload schema, informing the automated ingestion pipeline, field selection, and preprocessing parser designed to format heterogeneous government records for downstream analysis.
 - 
