@@ -162,3 +162,12 @@ Foodborne illness outbreaks pose a significant challenge to public health system
 - **Pattern Identification:** Reveals noticeable seasonality and irregular reporting spikes across different months rather than an even temporal spread.
 - **Domain & Engineering Insight:** Identifying these longitudinal patterns provides crucial context for time-series aggregation, enabling the evaluation of regulatory enforcement cycles and potential seasonal outbreak surges.
 - 
+
+### Recall Case Status Distribution
+![Before Preprocessing: Recall Status Distribution](11.png)
+
+- **Status Breakdown :** Illustrates the operational state of extracted FDA recall cases prior to data preprocessing:
+  - **Terminated:** 577 records (Majority of recall cases officially resolved and closed).
+  - **Ongoing:** 377 records (Active recall actions undergoing regulatory processing).
+  - **Completed:** 46 records (Recalls where all actions are finished but final administrative termination is pending).
+- **Engineering Value:** Categorizes the active context of enforcement data, enabling label filtering and status-based feature engineering during data modeling.
