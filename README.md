@@ -439,3 +439,17 @@ Task 3 evaluated four candidate architectures for multi-class product classifica
   - **ModernBERT-Large** achieved the top overall performance with a **Macro F1 of 0.7401** and **Macro Accuracy of 0.8170**.
   - **RoBERTa-large** followed closely (`Macro F1 = 0.7384`), showcasing deep 24-layer contextual representations.
   - Pure transformer architectures consistently outperformed the hybrid **BERT-CNN-BiLSTM** baseline (`Macro F1 = 0.7095`).
+ 
+- ### Model Transparency & Explainability (LIME Analysis)
+
+To interpret model decision boundaries and diagnose failure cases, Local Interpretable Model-agnostic Explanations (LIME) was applied to analyze prediction behavior.
+
+![BERTweet Alert Detection - LIME XAI Explanation](24.png)
+
+#### Error Case Analysis (False Negative Analysis)
+- **Sample Instance:** *"one in five office coffee mugs contains fecal bacterial and e.coli, which can cause diarrhea, food poisoning, and infections. corefact"*
+- **Ground Truth:** `Alert` | **Predicted:** `Noise`
+- **Key LIME Findings:**
+  - **Positive Contribution to Noise:** Generic and contextual tokens (`can`, `mugs`, `and`, `corefact`, `in`, `which`, `contains`, `infections`) incorrectly drove the prediction toward the `Noise` label.
+  - **Negative Contribution to Alert:** Strong microbiological and health indicators (`poisoning`, `coli`, `bacterial`, `food`, `coffee`, `fecal`) pushed away from the correct `Alert` classification.
+- **Root Cause Insight:** Highlights a pre-training limitation where BERTweet occasionally maps clinical terminology in informal, trivia-style contexts to non-alert social chatter, suppressing true signals.
