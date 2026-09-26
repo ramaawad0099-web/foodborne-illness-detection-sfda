@@ -291,3 +291,21 @@ Classification Impact: Combining these elements makes the FDA records more infor
 - **Generated Text Length Distribution :** Shows the text length distribution for the generated FDA fields (`title_length`, `text_length`, and `input_text_length`) after preprocessing.
 - **Title Conciseness:** The values for `title_length` are distinctly shorter, as the title was specifically designed to serve as a concise recall headline.
 - **Text & Input Comparison:** The `text_length` and `input_text_length` distributions cover broader text ranges, providing the necessary context for classification tasks.
+
+
+# Modeling & System Architecture
+
+This section details the modeling architecture of the food safety monitoring system. It outlines the end-to-end processing pipeline, model selection rationale across tasks, and the integration of machine learning outputs into actionable analytical dashboards.
+
+The system is structured around three core intelligence tasks:
+1. **Task 1: Alert Detection** — Social media filtering using domain-specific Transformers.
+2. **Task 2: Named Entity Recognition (NER)** — Extraction of fine-grained food hazard parameters.
+3. **Task 3: Product Category Classification** — Categorization of validated social signals and official agency records.
+
+---
+
+## System Architecture Overview
+
+The system transforms raw, unstructured multi-source text into structured, real-time risk analytical feeds. The operational architecture spans six progressive processing stages:
+
+![Overall System Architecture Pipeline](20.png)
