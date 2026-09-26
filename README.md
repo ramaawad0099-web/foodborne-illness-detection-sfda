@@ -372,3 +372,13 @@ Categorizes incidents into standardized food product categories by benchmarking 
 - **Model Tuning Protocol:** Standardized training setup across candidate models; selected optimal checkpoints based on Validation Macro F1-score (`patience=2`).
 - **Explainability Integration:** Applied **LIME** to misclassified instances to visualize word influence on category selection.
 - **Tech Stack:** Python, PyTorch, Hugging Face `Transformers`, `scikit-learn`, `LIME`, `NumPy`.
+
+
+## Development Environment & Infrastructure
+
+The model development and training pipeline was implemented using cloud-based GPU infrastructure to support efficient fine-tuning of transformer architectures.
+
+- **Computational Environment:** Developed and executed on **Google Colab**, utilizing cloud-hosted GPU resources for accelerated deep learning experimentation and model tuning.
+- **Core Frameworks & Libraries:** Built primarily in **Python**, leveraging **PyTorch** and the **Hugging Face Transformers** ecosystem for downloading pre-trained models, tokenization, fine-tuning, sequence evaluation, and model serialization.
+- **Storage & Artifact Management:** Integrated with **Google Drive** for persistent storage of dataset versions, experimental checkpoints, evaluation logs, and finalized model artifacts.
+- **Deployment Readiness:** Trained and fine-tuned model checkpoints were serialized and structured for seamless downstream integration into the interactive dashboard.
