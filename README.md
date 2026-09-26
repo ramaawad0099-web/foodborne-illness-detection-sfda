@@ -125,3 +125,16 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Chicken-based Products:** 138 instances
   - Followed by cakes, ready-to-eat meals, cookies, cheese, salads, ground beef, salmon, and peanuts.
 - **Long-Tail Distribution:** While high-risk specific items recur frequently, the vast majority of unique products appear only once, emphasizing the necessity of robust NLP entity-extraction pipelines capable of handling rare and unseen vocabulary.
+
+
+### Hazard Type & Allergen Risk Analysis
+![Top 10 Hazards Plot](9.png)
+
+- **Hazard Diversity (Figure 3.12):** Encompasses **128 unique hazard types**, providing comprehensive coverage across biological, chemical, and physical food safety threats.
+- **Dominant Pathogens & Allergenic Hazards:**
+  - **Listeria monocytogenes:** $13\%$ of total recorded hazards
+  - **Salmonella:** $12.2\%$
+  - **Milk and Products Thereof (Allergen):** $11.6\%$
+  - **Moderate Frequency Risks:** *Escherichia coli*, peanut allergens, gluten/wheat allergens, plastic fragments, soy, and metal fragments.
+- **Long-Tail Pattern:** A heavy concentration in primary biological pathogens and top-tier allergens, with a long tail of minor physical contaminants appearing only once or twice.
+- 
