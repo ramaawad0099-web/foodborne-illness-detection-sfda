@@ -231,7 +231,7 @@ This phase evaluates the structural cleanliness, text normalization outcomes, an
 
 ![Before vs After Preprocessing: Text Length Comparison](17.png)
 
-Comparative Text Length Analysis (Figure 4.6): Compares the text length distribution before and after preprocessing.
+Comparative Text Length Analysis : Compares the text length distribution before and after preprocessing.
 
 Processed Input Characteristics: The processed input text is longer because it combines the generated title and summary.
 
