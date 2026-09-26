@@ -101,3 +101,16 @@ Foodborne illness outbreaks pose a significant challenge to public health system
   - **Canada (`ca`):** 856 reports
   - **United Kingdom (`uk`):** 687 reports
 - **Geographic Representation:** Demonstrates regional dominance in public health logging, informing regional risk-normalization strategies when modeling international outbreak trends.
+
+
+### Product Category Distribution Analysis
+![Product Category Distribution](7.png)
+
+- **Category Breadth :** Covers **22 distinct product categories**, demonstrating comprehensive monitoring across food types.
+- **Primary Contributor Breakdown:**
+  - **Meat, Egg, and Dairy Products:** $28.2\%$ (Largest share)
+  - **Cereals and Bakery Products:** $13.2\%$
+  - **Fruits and Vegetables:** $10.5\%$
+  - **Prepared Dishes and Snacks:** $9.2\%$
+  - **Low-Risk Categories:** Items like sugars and syrups each contribute less than $1\%$.
+- **Regulatory Alignment:** Reflects highly targeted surveillance focused on high-risk, perishable, and animal-derived food groups susceptible to microbial contamination.
