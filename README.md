@@ -527,7 +527,7 @@ Despite being the best-performing model overall on this task, ModernBERT-large i
 
 ### Task 3: Product Category Classification Explainability (Qwen2.5)
 
-The instance involves a recall notice for a chicken parmigiana with creamy mashed potato — a prepared dish — which Qwen2.5 incorrectly classified as meat, egg and dairy products[cite: 15].
+The instance involves a recall notice for a chicken parmigiana with creamy mashed potato — a prepared dish — which Qwen2.5 incorrectly classified as meat, egg and dairy products .
 
 ![Qwen2.5 LIME Explanation](28.png)
 
@@ -537,3 +537,18 @@ The instance involves a recall notice for a chicken parmigiana with creamy mashe
   * **Positive Contribution to Wrong Label:** The model’s prediction is driven by tokens closely associated with protein and dairy, with `parmigiana` (approximately +0.29) and `chicken` (approximately +0.28) dominating as the strongest positive contributors, followed by `creamy`, `any`, `supporting`, `refund`, `with`, and `recall`.
   * **Negative Importance on Prepared Signals:** Tokens that are more indicative of a prepared, composite dish—such as `potato`, `meal`, `made`, `ready`, `products`, `close`, and `400g`—all contribute negatively, actively working against the correct classification .
 * **Root Cause Insight:** This failure mode indicates that Qwen2.5 struggles to capture compositional semantics: rather than interpreting the product as a ready-made meal containing multiple ingredients, the model reduces it to its most prominent protein component, leading to a systematic misclassification of multi-ingredient prepared dishes .
+
+
+
+### Task 3: Product Category Classification Explainability (BERT-CNN-BiLSTM)
+
+The instance involves an Alexia Foods recall notice for olive oil, sun-dried tomatoes pesto oven reds frozen potatoes — a product correctly belonging to prepared dishes and snacks — which BERT-CNN-BiLSTM predicted as soups, broths, sauces and condiments.
+
+![BERT-CNN-BiLSTM LIME Explanation](29.png)
+
+* **Sample Incident:** An Alexia Foods recall notice for olive oil, sun-dried tomatoes pesto oven reds frozen potatoes (True Category: *prepared dishes and snacks*).
+* **Prediction:** *soups, broths, sauces and condiments*.
+* **Key LIME Findings:**
+  * **Positive Contribution to Wrong Label:** Figure 6.8 reveals one of the most extreme single-token dependencies observed across all models, where `pesto` alone accounts for an importance score of approximately +0.90, dwarfing all other contributing tokens. Supporting tokens include `dried`, `tomatoes`, `and`, `refund`, `these`, `drug`, and `an`, though their contributions are marginal by comparison.
+  * **Negative Importance on Contextual Signals:** Contextual and product-related tokens such as `potato`, `retail`, `purchased`, `wedges`, `pine`, `potatoes`, and `today` all contribute negatively.
+* **Root Cause Insight:** The near-total reliance on a single condiment-associated token (`pesto`) to determine the entire classification reveals a severe lexical anchoring problem in the hybrid architecture. The model fails to integrate the broader product context—a frozen, portioned food item subject to an allergen recall—and instead collapses its decision onto the single most salient surface token, resulting in a confident but entirely incorrect prediction.
