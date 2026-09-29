@@ -1,75 +1,92 @@
 # AI-Powered Foodborne Illness Detection Platform
 *In Collaboration with the Saudi Food and Drug Authority (SFDA)*
 
+---
+
 ## Project Overview
+
 Foodborne illness outbreaks pose a significant challenge to public health systems, requiring rapid identification and proactive intervention. Developed in collaboration with the Saudi Food and Drug Authority (SFDA), this platform provides an automated, data-driven framework for real-time outbreak monitoring, predictive risk modeling, and early warning detection. The system transforms raw health incident data and social media signals into actionable insights to support evidence-based public health decisions.
 
 ---
 
 ## Technical Highlights and Methodology
-- **Multi-Source Data Ingestion Pipeline:** Automated scrapers and API integrations (via Apify for X/Twitter and OpenFDA) to ingest real-time public sentiment, health reports, and regulatory recall data.
-- **Advanced NLP & Transformer Models:** Customized State-of-the-Art Transformer architectures fine-tuned for specialized tasks:
-  - **BioBERT** for Biomedical Named Entity Recognition (NER) and BIO tagging.
-  - **BERTweet** for real-time social media Anomaly and Alert Detection.
-  - **RoBERTa-Large** for automated Product Category Classification.
-- **Explainable AI (XAI):** Integrated **LIME** (Local Interpretable Model-agnostic Explanations) to offer model transparency, highlighting critical tokens driving model predictions for regulatory confidence.
-- **Interactive Geospatial Dashboard:** Custom Streamlit interface featuring interactive Folium maps for spatial-temporal outbreak tracking, risk severity heatmaps, and automated alert triggers.
-- **Robust Model Evaluation:** Rigorous benchmarking using `seqeval` for sequence labeling tasks, multi-class confusion matrices, and standard classification metrics ($F_1$-Score, Precision, Recall).
+
+* **Multi-Source Data Ingestion Pipeline:** Automated scrapers and API integrations (via Apify for X/Twitter and openFDA) to ingest real-time public sentiment, health reports, and regulatory recall data.
+* **Advanced NLP & Transformer Models:** Customized State-of-the-Art Transformer architectures fine-tuned for specialized tasks:
+* **BioBERT** for Biomedical Named Entity Recognition (NER) and BIO tagging.
+* **BERTweet** for real-time social media Anomaly and Alert Detection.
+* **RoBERTa-Large** for automated Product Category Classification.
+
+
+* **Explainable AI (XAI):** Integrated **LIME** (Local Interpretable Model-agnostic Explanations) to offer model transparency, highlighting critical tokens driving model predictions for regulatory confidence.
+* **Interactive Geospatial Dashboard:** Custom Streamlit interface featuring interactive Folium maps for spatial-temporal outbreak tracking, risk severity heatmaps, and automated alert triggers.
+* **Robust Model Evaluation:** Rigorous benchmarking using `seqeval` for sequence labeling tasks, multi-class confusion matrices, and standard classification metrics ($F_1$-Score, Precision, Recall, Accuracy).
 
 ---
 
 ## Technical Stack
-- **Core Language:** Python
-- **Deep Learning & NLP:** PyTorch, Hugging Face (`transformers`, `datasets`, `accelerate`), BioBERT, BERTweet, RoBERTa-Large, NLTK, spaCy
-- **Explainable AI (XAI):** LIME
-- **Data Engineering & Scraping:** Pandas, NumPy, Apify Client (`apify-client`), Requests (openFDA API), Emoji
-- **Machine Learning & Evaluation:** Scikit-learn, Seqeval
-- **Visualization & Geospatial Analytics:** Streamlit, Folium (`streamlit-folium`), Matplotlib, Seaborn
-- **Environment & Deployment:** Python-dotenv, Secrets Management
+
+* **Core Language:** Python
+* **Deep Learning & NLP:** PyTorch, Hugging Face (`transformers`, `datasets`, `accelerate`), BioBERT, BERTweet, RoBERTa-Large, NLTK, spaCy
+* **Explainable AI (XAI):** LIME
+* **Data Engineering & Scraping:** Pandas, NumPy, Apify Client (`apify-client`), Requests (openFDA API), Emoji
+* **Deep Learning & Evaluation:** Scikit-learn, Seqeval
+* **Visualization & Geospatial Analytics:** Streamlit, Folium (`streamlit-folium`), Matplotlib, Seaborn
+* **Environment & Deployment:** Python, Secrets Management
 
 ---
-
-
 
 # Data Collection & Ingestion Framework
 
-The system utilizes a multi-source data ingestion strategy to balance real-time hazard detection with high-precision regulatory monitoring. Data sources are categorized into three operational pillars:
-
-1. **Social Media Streams (X/Twitter):** Unstructured, real-time social text serving as an early-warning signal for foodborne illness detection, integrated directly into the dashboard.
-2. **Official Regulatory Enforcement Data (openFDA):** Structured government enforcement feeds establishing ground-truth baselines for confirmed global food safety threats.
-3. **Supervised Training Corpora:** Academic-standard, expert-annotated datasets (**TWEET-FID** and **SemEval-2025 Task 9**) used to train and calibrate Transformer classification models.
+The system utilizes a multi-source data ingestion strategy to balance real-time hazard detection with high-precision regulatory monitoring across four operational data sources:
 
 ---
 
-## Data Sources & Pipeline Specifications
+### 1. TWEET-FID Dataset 
 
-### 1. TWEET-FID Dataset (Social Sentinel Corpus)
 * **Origin & Ingestion:** Acquired via direct communication with original researchers (Dr. Ruofan Hu). Collected via the Twitter API using foodborne illness tracking keywords (`#foodpoisoning`, `stomach`, `vomit`).
-* **Publication & Temporal Range:** Initiated in January 2019; published in May 2022.
-* **Corpus Scale & Selection:** Filtered from an initial pool of over 6 million tweets down to a curated, expert-annotated subset of **4,122 tweets**.
+* **Corpus Scale & Selection:** Filtered from an initial pool of over 6 million tweets down to a curated, expert-annotated subset of **4,122 tweets** (initiated in January 2019; published in May 2022).
 * **Negative Control Sampling:** Includes 1,000 randomized non-keyword tweets to train models on ambient, non-alert baseline social text.
 * **Role in Pipeline:** Serves as the primary training and evaluation foundation for early illness detection models.
 
 ---
 
 ### 2. SemEval-2025 Task 9 Dataset (Food Hazard Challenge)
-* **Origin & Ingestion:** Benchmark corpus derived from official global food safety agencies (including the U.S. FDA and international equivalents).
-* **Corpus Scale:** Contains **5,082 manually annotated reports** evaluated by food science and technology domain experts.
-* **Schema Attributes:** Consists of 10 structured fields combining textual, categorical, and temporal metadata: `country`, `title`, `text`, `hazard-category`, `product-category`, `hazard`, `product`, `year`, `month`, and `day`.
+
+* **Origin & Ingestion:** Benchmark corpus derived from official global food safety agencies (including the U.S. FDA and international equivalents) containing **5,082 manually annotated reports** evaluated by domain experts.
+* **Schema Attributes:** Combines 10 structured fields: `country`, `title`, `text`, `hazard-category`, `product-category`, `hazard`, `product`, `year`, `month`, and `day`.
 * **Multi-Task Optimization Target:**
-  * **Sub-Task 1 (ST1):** Target variables are `hazard-category` and `product-category`.
-  * **Sub-Task 2 (ST2):** Target variables are micro-entities `hazard` and `product`.
+* **Sub-Task 1 (ST1):** Target variables are `hazard-category` and `product-category`.
+* **Sub-Task 2 (ST2):** Target variables are micro-entities `hazard` and `product`.
+
+
 
 ---
 
 ### 3. openFDA Enforcement Dataset (Regulatory Monitoring)
+
 * **Ingestion Protocol:** Automated extraction of structured JSON payloads via the **openFDA Food Enforcement API**.
 * **Corpus Scale & Features:** Extracted **1,000 raw FDA recall records** mapped across 25 descriptive fields spanning four core analytical dimensions:
-  * **Event & Firm Metadata:** `event_id`, `recalling_firm`, `address_1`, `city`, `state`, `country`, `postal_code`.
-  * **Product & Hazard Description:** `product_description`, `reason_for_recall`, `code_info`, `product_quantity`, `distribution_pattern`.
-  * **Regulatory Status:** `status`, `classification`, `product_type`, `recall_number`.
-  * **Temporal Tracking:** `recall_initiation_date`, `center_classification_date`, `report_date`, `termination_date` (ingested as string objects in `YYYYMMDD` format).
-* **Data Transformation:** Ingested JSON structures are dynamically converted into Pandas DataFrames to feed the feature engineering and product category classification pipeline.
+* **Event & Firm Metadata:** `event_id`, `recalling_firm`, `address_1`, `city`, `state`, `country`, `postal_code`.
+* **Product & Hazard Description:** `product_description`, `reason_for_recall`, `code_info`, `product_quantity`, `distribution_pattern`.
+* **Regulatory Status:** `status`, `classification`, `product_type`, `recall_number`.
+* **Temporal Tracking:** `recall_initiation_date`, `center_classification_date`, `report_date`, `termination_date` (ingested as string objects in `YYYYMMDD` format).
+
+
+* **Data Transformation:** Ingested JSON structures are dynamically converted into Pandas DataFrames to feed the feature engineering and product classification pipeline.
+
+---
+
+### 4. X (Twitter) Social Sentiment & Real-Time Monitoring Dataset
+
+* **Ingestion Protocol:** Automated web scraping and data extraction of public posts and social signals via Apify Actors tailored for X.
+* **Corpus Scale & Features:** Extracted real-time user-generated posts spanning key dimensions:
+* **Post Metadata:** `post_id`, `timestamp`, `author_username`, and engagement metrics (replies, reposts, likes).
+* **Content Features:** `post_text`, hashtags, and URLs referencing potential food safety incidents.
+* **Temporal Tracking:** Publication timestamps ingested to track real-time trends and public reporting velocity.
+
+
+* **Data Transformation:** Scraped payloads are parsed and converted into Pandas DataFrames to feed early outbreak signal detection.
 
   ## ## Exploratory Data Analysis (EDA) — Raw Data Insights (TWEET-FID Data)
 
