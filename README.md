@@ -579,12 +579,18 @@ Figures present LIME explanations for representative misclassifications across a
   * In Task 2, BioBERT exhibits the opposite tendency: its biomedical pre-training causes it to over-index on isolated clinical tokens such as poison, overshadowing the surrounding informal context and causing it to miss the food entity food entirely.
   * These two cases together illustrate how domain mismatch—whether general Twitter data or formal biomedical corpora—can systematically distort predictions when models are applied to informal, real-world social media text.
 
-* **Task 3 Model-Specific Failure Modes:** 
-  * In Task 3, the three analysed models each exhibit a distinct but related failure mode. 
-  * RoBERTa-large anchors on dominant ingredient keywords (Nut, walnut, Seed), ignoring the composite and safety-relevant context of a mixed food recall. 
-  * Qwen2.5 reduces multi-ingredient prepared dishes to their most prominent protein component (parmigiana, chicken), failing to capture the ready-made nature of the product. 
-  * BERT-CNN-BiLSTM displays the most extreme single-token dependency, assigning approximately 90% of its predictive weight to pesto while disregarding all other contextual evidence. 
-  * Across all three models, tokens that carry genuine compositional or contextual meaning are systematically underweighted, while high-frequency or surface-salient tokens dominate the decision boundary.
+Task 3 Model-Specific Failure Modes:
+
+In Task 3, the four analysed models each exhibit a distinct yet related failure mode.
+
+ModernBERT-Large (the selected model) and RoBERTa-large tend to anchor on dominant ingredient keywords (Nut, walnut, Seed), ignoring the composite and safety-relevant context of a mixed food recall.
+
+Qwen2.5 reduces multi-ingredient prepared dishes to their most prominent protein component (parmigiana, chicken), failing to capture the ready-made nature of the product.
+
+BERT-CNN-BiLSTM displays the most extreme single-token dependency, assigning approximately 90% of its predictive weight to pesto while disregarding all other contextual evidence.
+
+Across all four models, tokens that carry genuine compositional or contextual meaning are systematically underweighted, while high-frequency or surface-salient tokens dominate the decision boundary.
+
 
 * **Shared Root Cause & Future Improvements:** 
   * Taken together, these analyses highlight a common limitation across all five models: an over-reliance on partial lexical cues rather than a holistic interpretation of the input. 
