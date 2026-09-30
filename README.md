@@ -455,10 +455,13 @@ Task 3 evaluated four candidate architectures for multi-class product classifica
 
 
 
-- **Comparative Key Findings:** 
-  - **ModernBERT-Large** achieved the top overall performance with a **Macro F1 of 0.7401** and **Macro Accuracy of 0.8170**.
-  - **RoBERTa-large** followed closely (`Macro F1 = 0.7384`), showcasing deep 24-layer contextual representations.
-  - Pure transformer architectures consistently outperformed the hybrid **BERT-CNN-BiLSTM** baseline (`Macro F1 = 0.7095`).
+Comparative Key Findings:
+
+ModernBERT-Large was selected and adopted as the top-performing model, achieving the highest overall performance with a Macro F1 of 0.7401 and a Macro Accuracy of 0.8170.
+
+RoBERTa-large followed closely behind (Macro F1 = 0.7384), showcasing deep 24-layer contextual representations.
+
+Pure transformer architectures consistently outperformed the hybrid BERT-CNN-BiLSTM baseline (Macro F1 = 0.7095).
  
 
 
